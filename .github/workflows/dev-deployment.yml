@@ -44,5 +44,5 @@ jobs:
             sudo apt-get update;
             sudo apt-get install -y aspnetcore-runtime-6.0
             cd /home/${{ secrets.USERNAME }}/app/publish
-            screen -X -S server quit
+            screen -ls 2>&1 | grep '(Detached)' | grep -o 'server' | xargs -I{} -n 1 -r screen -r -S {} -X quit
             screen -S server -dm dotnet Api.dll --urls http://0.0.0.0:80
