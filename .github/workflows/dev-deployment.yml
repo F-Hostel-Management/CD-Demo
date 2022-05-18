@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: ./app/publish/**
-          target: /home/app
+          target: /home/${{ secrets.USERNAME }}/app
       - name: Run
         uses: appleboy/ssh-action@master
         with:
@@ -39,4 +39,4 @@ jobs:
             wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
             sudo dpkg -i packages-microsoft-prod.deb
             rm packages-microsoft-prod.deb
-            dotnet Api.dll
+            dotnet /home/${{ secrets.USERNAME }}/app/Api.dll
