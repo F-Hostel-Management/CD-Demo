@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - master
-job:
+jobs:
   deploy_backend:
     run-on: ubuntu-latest
     steps:
