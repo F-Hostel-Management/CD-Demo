@@ -1,0 +1,41 @@
+name: Dev deployment
+on:
+  pull_request:
+    branches:
+      - master
+job:
+  deploy_backend:
+    run-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "6.0"
+      - name: Build
+        run: dotnet build -c Release -o /app/build F-Hostel.sln
+      - name: Publish
+        run: dotnet publish -c Release -o /app/publish
+      - name: Copy to vps
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          src: /app/publish/**
+          target: /app/publish
+      - name: Run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script_stop: true
+          script: |
+            wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+            sudo dpkg -i packages-microsoft-prod.deb
+            rm packages-microsoft-prod.deb
+            dotnet Api.dll
