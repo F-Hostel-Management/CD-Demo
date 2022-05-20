@@ -2,9 +2,9 @@
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Contexts;
+namespace Infrastructure.Contexts;
 
-internal class ApplicationDbContext : DbContext, IApplicationDbContext
+public class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
