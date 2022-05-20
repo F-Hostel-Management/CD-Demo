@@ -78,6 +78,10 @@ var app = builder.Build();
     app.UseAuthentication();
     app.UseAuthorization();
     app.AddControllerMapper();
+
+    var PORT = Environment.GetEnvironmentVariable("PORT");
+    app.Urls.Add($"http://0.0.0.0:{PORT}");
+
     app.Run();
 }
 
