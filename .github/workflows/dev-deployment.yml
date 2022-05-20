@@ -55,6 +55,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: development
+    needs: [build_frontend, build_backend]
     steps:
       - name: Download frontend
         uses: actions/download-artifact@v3
