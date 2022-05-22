@@ -4,7 +4,7 @@ ARG PORT
 ENV PORT=$PORT
 
 WORKDIR /app
-COPY . ./
+COPY . .
 
 RUN ls -R
 
