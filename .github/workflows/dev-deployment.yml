@@ -52,11 +52,6 @@ jobs:
         with:
           name: backend
           path: backend/**
-      - name: Upload Dockerfile
-        uses: actions/upload-artifact@v3
-        with:
-          name: Dockerfile
-          path: Deployment/Dockerfile
   deploy:
     runs-on: ubuntu-latest
     environment: development
@@ -71,11 +66,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: backend
-          path: .
-      - name: Download Dockerfile
-        uses: actions/download-artifact@v3
-        with:
-          name: Dockerfile
           path: .
       - name: Show structure
         run: ls -R
