@@ -78,4 +78,4 @@ jobs:
       - name: Link cloud project
         run: sudo RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link ${{ secrets.RAILWAY_PROJECT }}
       - name: Deploy
-        run: sudo RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway run dotnet Api.dll
+        run: sudo RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway up
