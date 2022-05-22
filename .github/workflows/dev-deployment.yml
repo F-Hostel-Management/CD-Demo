@@ -74,8 +74,8 @@ jobs:
         with:
           node-version: 16
       - name: Install Railway CLI
-        run: npm i -g @railway/cli
+        run: sudo npm i -g @railway/cli
       - name: Link cloud project
-        run: RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link ${{ secrets.RAILWAY_PROJECT }}
+        run: sudo RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway link ${{ secrets.RAILWAY_PROJECT }}
       - name: Deploy
         run: sudo RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }} railway run dotnet Api.dll
