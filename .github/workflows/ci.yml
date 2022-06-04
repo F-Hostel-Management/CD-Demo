@@ -17,7 +17,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "Github Actions"
           git fetch
-          git merge origin/${{ github.head_ref }} --allow-unrelated-histories
+          git merge origin/${{ github.head_ref }} --allow-unrelated-histories --no-rebase
       - name: Show structure
         run: ls -R -a
       - name: Set up Nodejs
