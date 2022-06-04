@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - run: echo ${{ github.head_ref }}
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      #   with:
-      #     ref: dev
+      - name: Checkout source branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Git pull from target branch
+        run: git pull ${{ github.base_ref }}
   #     - name: Set up Nodejs
   #       uses: actions/setup-node@v3
   #       with:
