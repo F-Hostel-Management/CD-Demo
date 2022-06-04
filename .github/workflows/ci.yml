@@ -13,8 +13,12 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Git pull from target branch
-        run: git pull origin ${{ github.base_ref }}
+      - name: Merge
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: ${{ github.base_ref }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
   #     - name: Set up Nodejs
   #       uses: actions/setup-node@v3
   #       with:
