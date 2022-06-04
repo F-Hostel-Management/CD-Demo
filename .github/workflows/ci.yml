@@ -13,8 +13,8 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Merge
-        run: git merge-base ${{ github.base_ref }} ${{ github.head_ref }}
+      - name: Git pull
+        run: git pull origin ${{ github.base_ref }} --rebase
   #     - name: Set up Nodejs
   #       uses: actions/setup-node@v3
   #       with:
