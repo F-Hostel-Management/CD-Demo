@@ -14,7 +14,7 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
       - name: Git pull from target branch
-        run: git pull ${{ github.base_ref }}
+        run: git pull origin ${{ github.base_ref }}
   #     - name: Set up Nodejs
   #       uses: actions/setup-node@v3
   #       with:
