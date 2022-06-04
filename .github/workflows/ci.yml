@@ -13,11 +13,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Git pull
+      - name: Git
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "Github Actions"
-        run: git merge ${{ github.bse_ref }}
+          git merge ${{ github.bse_ref }}
   #     - name: Set up Nodejs
   #       uses: actions/setup-node@v3
   #       with:
