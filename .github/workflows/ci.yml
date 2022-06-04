@@ -8,39 +8,43 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - name: Checkout source branch
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
-      - name: Git
+      - name: Git merge
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "Github Actions"
           git merge origin/${{ github.base_ref }}
-      - name: Show structure
-        run: ls -R -a
-  #     - name: Set up Nodejs
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 16
-  #     - name: Install packages
-  #       working-directory: Api/Client
-  #       run: yarn
-  #     - name: Build
-  #       working-directory: Api/Client
-  #       run: yarn build
-  # build_backend:
-  #   runs-on: ubuntu-latest
-  #   environment: development
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #       with:
-  #         ref: dev
-  #     - name: Set up .NET
-  #       uses: actions/setup-dotnet@v2
-  #       with:
-  #         dotnet-version: "6.0"
-  #     - name: Build
-  #       run: dotnet build -c Release
+      - name: Set up Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install packages
+        working-directory: Api/Client
+        run: yarn
+      - name: Build
+        working-directory: Api/Client
+        run: yarn build
+  build_backend:
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - name: Git merge
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+          git merge origin/${{ github.base_ref }}
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "6.0"
+      - name: Build
+        run: dotnet build -c Release
